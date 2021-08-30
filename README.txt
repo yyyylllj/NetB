@@ -13,3 +13,4 @@ We have show a set of value of these three parameters in the file, and you do no
 
 When finish training, we can get the encoder 'mod-lx1-100-1.pt' and decoder 'mod-lx2-100-1.pt'. (We have save them in the 'mod-lx1-100-1.pt' and 'mod-lx2-100-1.pt.', you can use them directly.)
 
+Use 'accuracy on test set.py' to test the accuracy of the CAE.
