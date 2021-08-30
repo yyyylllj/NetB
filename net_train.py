@@ -11,6 +11,8 @@ from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import MultiStepLR
 import cv2
 T=60
+BC=0.1
+XLLC=600
 train_dataset = datasets.MNIST(root='./data/',train=True,transform=transforms.ToTensor(),download=True)
 test_dataset = datasets.MNIST(root='./data/',train=False,transform=transforms.ToTensor(),download=True)
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
@@ -61,13 +63,13 @@ class Net1(nn.Module):
         return x
 mod=Net()
 mod1=Net1()
-mod=mod.cuda(1)
-mod1=mod1.cuda(1)
+mod=mod.cuda()
+mod1=mod1.cuda()
 loss=nn.MSELoss()
 loss1=nn.CrossEntropyLoss()
-optimizer=optim.SGD(mod.parameters(),lr=0.1)
+optimizer=optim.SGD(mod.parameters(),lr=BC)
 schedulerD = MultiStepLR(optimizer, milestones=[50,150,300,450], gamma=0.8)
-optimizer1=optim.SGD(mod1.parameters(),lr=0.1)
+optimizer1=optim.SGD(mod1.parameters(),lr=BC)
 schedulerD1 = MultiStepLR(optimizer1, milestones=[50,150,300,450], gamma=0.8)
 params=list(mod.parameters())
 params1=list(mod1.parameters())
@@ -75,29 +77,29 @@ pj=torch.zeros(10,100)
 for i in range(10):
     for j in range(10):
         pj[i,10*i+j]=1
-pj=pj.cuda(1)
+pj=pj.cuda()
 def func(y):
     o=torch.zeros(T,100)
-    o=o.cuda(1)
+    o=o.cuda()
     for i in range(T):
         k=y[i].int()
         o[i,:]=pj[k,:]
     return o
 def func1(w,y):
     o=torch.zeros(T,100)
-    o=o.cuda(1)
+    o=o.cuda()
     for i in range(T):
         k=y[i].int()
         o[i,:]=w[i]*pj[k,:]
     return o
 def func2(w):
     a=torch.zeros(T,10)
-    a=a.cuda(1)
+    a=a.cuda()
     for i in range(T):
         for j in range(10):
             a[i,j]=-loss(w[i],pj[j,:])
     return a
-for i in range(800):
+for i in range(XLLC):
     print(i)
     train_loss=0
     train_loss1=0
@@ -107,8 +109,8 @@ for i in range(800):
     print(q1,q11)
     for x,y in train_loader:
         x = Variable(x)
-        x = x.cuda(1)
-        y = y.cuda(1)
+        x = x.cuda()
+        y = y.cuda()
         mod.requires_grad_(True)
         mod.train()
         mod1.requires_grad_(False)
