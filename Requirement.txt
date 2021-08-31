@@ -1,7 +1,12 @@
-  
-numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1603570489231/work
+ numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1603570489231/work
+--find-links https://download.pytorch.org/whl/torch_stable.html
+numpy
 opencv-python==4.4.0.46
 Pillow @ file:///tmp/build/80754af9/pillow_1603822255246/work
 torch==1.7.0
 torchaudio==0.7.0a0+ac17b64
 torchvision==0.8.1
+Pillow
+torch==1.7.0+cu110
+torchaudio==0.7.0
+torchvision==0.8.1+cu110
