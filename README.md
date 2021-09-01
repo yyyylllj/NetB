@@ -37,3 +37,5 @@ Use `Try-LCAE.py` to test the accuracy of the LCAE on the test set.
 `CAE-draw the number.py` can draw the input and output of the CAE, if you want to use this code, make sure you run this '.py' file on the pycharm. 
 
 `LCAE-draw the number.py` can draw the input and output of the LCAE, if you want to use this code, make sure you run this '.py' file on the pycharm. 
+
+We have show a set of the output of `CAE-draw the number.py` and `LCAE-draw the number.py ` in the  `CAE-draw.png` and  `LCAE-draw.png`.
