@@ -154,12 +154,6 @@ for x,y in test_loader:
             mc[ii + 1][jj + 30+1] = xx[0][0][ii][jj].detach()
     break
 
-
-
-
-
-
 mc=mc.cpu()
-
 cv2.imshow('1',mc.numpy())
 cv2.waitKey()
