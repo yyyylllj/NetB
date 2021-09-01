@@ -28,4 +28,12 @@ We have show a set of value of these three parameters in the file, and you do no
 
 When finish training, we can get the encoder `mod-lx1-100-1.pt` and decoder `mod-lx2-100-1.pt`. (We have save them in the 'mod-lx1-100-1.pt' and 'mod-lx2-100-1.pt.', you can use them directly.)
 
-Use `python accuracy on test set.py` to test the accuracy of the CAE.
+Use `Try-CAE.py` to test the accuracy of the CAE on the test set.
+
+Use'Try-LCAE' to test the accuracy of the LCAE on the test set.
+
+'Try-LCAE-calculate-probability.py' can calculate the probability of a random samples in the test.
+
+'CAE-draw the number.py' can draw the input and output of the CAE, if you want to use this code, make sure you run this '.py' file on the pycharm. 
+
+'LCAE-draw the number.py' can draw the input and output of the LCAE, if you want to use this code, make sure you run this '.py' file on the pycharm. 
