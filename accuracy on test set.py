@@ -138,7 +138,14 @@ def nce(x,w,a):
         if lossx>a:
             y+=1
     return 1
-right_n=0
+Problem_image_by_S2=0
+Image_by_S3_with_correct_label=0
+Image_by_S3_with_wrong_label=0
+Problem_image_by_S4=0
+Problem_image_by_S5=0
+Image_by_S5_with_correct_label=0
+Image_by_S5_with_wrong_label=0
+mod.eval()
 for x,y in test_loader:
     x=x.cuda()
     y=y.cuda()
@@ -146,20 +153,32 @@ for x,y in test_loader:
     w=mod(x)
     qq = func_1(w)
     iq = int(qq)
-    if iq==int(y):
-        xx=mod1(func1(w,y))
-        l=loss2(xx,x)
+    if abs(func_(w[0],iq))<80:
+        Problem_image_by_S2+=1
+    else:
+        xx = mod1(func11(w, iq))
+        l=loss2(x,xx)
         if l<0.04:
-            right_n+=1
-        if l>0.04 and l<0.09:
-            right_n+=nce(x,w,l)
+            if iq==int(y):
+                Image_by_S3_with_correct_label+=1
+            else:
+                Image_by_S3_with_wrong_label+=1
+        if l>0.09:
+            Problem_image_by_S4+=1
+        if 0.04<l and l<0.09:
+            ln=nce(x,w,l)
+            if ln==0:
+                Problem_image_by_S5+=1
+            else:
+                if iq == int(y):
+                    Image_by_S5_with_correct_label += 1
+                else:
+                    Image_by_S5_with_wrong_label += 1
 
-
-print(right_n)
-
-
-
-
-
-#cv2.imshow('1',mc.numpy())
-#cv2.waitKey()
+print("Problem_image_by_S2" + '='+str(Problem_image_by_S2))
+print("Image_by_S3_with_correct_label" + '='+str(Image_by_S3_with_correct_label))
+print("Image_by_S3_with_wrong_label" + '='+str(Image_by_S3_with_wrong_label))
+print("Problem_image_by_S4" + '='+str(Problem_image_by_S4))
+print("Problem_image_by_S5" + '='+str(Problem_image_by_S5))
+print("Image_by_S5_with_correct_label" + '='+str(Image_by_S5_with_correct_label))
+print("Image_by_S5_with_wrong_label" + '='+str(Image_by_S5_with_wrong_label))
