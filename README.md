@@ -1,6 +1,6 @@
 # NetB
 
-Codes for the paper [arXiv:...]()
+Codes for the paper 《A Robust Classification-autoencoder to Defend Outliers and Adversaries》
 
 ## Install
 
